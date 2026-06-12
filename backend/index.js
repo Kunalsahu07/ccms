@@ -82,13 +82,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 BigInt.prototype.toJSON = function () {
   return this.toString();
 };
+const PORT = process.env.PORT || 5000;
 
-// // ✅ Connect Redis THEN start server
 async function startServer() {
   try {
     await redisClient.connect();
 
-    const PORT = 5000;
+
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
