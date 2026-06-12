@@ -1,5 +1,5 @@
 const pool = require('../db');
-const { param } = require('../routes/dashboardRoute');
+
 
 async function getDashboardStatsDetails(dept_id, reg_year) {
     let conn;
