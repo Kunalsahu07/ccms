@@ -1,0 +1,15 @@
+<div class="shell" [class.sidebar-collapsed]="collapsed$ | async">
+
+    <!-- Left Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Right: Topbar + Page Content -->
+    <div class="main-area">
+        <app-topbar></app-topbar>
+
+        <main class="content-area">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+
+</div>

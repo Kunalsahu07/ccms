@@ -1,0 +1,53 @@
+<div class="container">
+    <app-ccmsheader></app-ccmsheader>
+    <div class="content">
+        <form>
+            <h1 class="mt-4" style="display: flex; justify-content: center;align-items: center;">ONBOARDING FORM </h1>
+
+            <div class="mb-3">
+                <label for="deptName">Department Name:</label>
+                <select class="form-select" name="deptName" id="deptName" required>
+                    <option value="" disabled>-- Select a department --</option>
+                    <option *ngFor="let d of data" [value]="d.dept_name">{{d.dept_name}}</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="deptAddress">Department Address:</label>
+                <input type="text" class="form-control" id="deptAddress" name="deptAddress" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nodalName">Nodal Name:</label>
+                <input class="form-control" type="text" id="nodalName" name="nodalName" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nodalEmail">Nodal Designation:</label>
+                <input type="text" class="form-control" id="nodalDesignation" name="nodalDesignation" required>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="nodalMobile">Nodal Mobile No:</label>
+                <input type="tel" class="form-control" id="nodalMobile" name="nodalMobile" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="nodalEmail">Nodal Email:</label>
+                <input type="email" class="form-control" id="nodalEmail" name="nodalEmail" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="letterToSIO">Letter to SIO:</label>
+                <input type="file" class="form-control" id="letterToSIO" name="letterToSIO" required>
+            </div>
+
+            <div class="sub-btn mb-3">
+                <button class="update-btn" type="submit">Submit</button>
+            </div>
+        </form>
+
+    </div>
+    <app-ccmsfooter></app-ccmsfooter>
+</div>

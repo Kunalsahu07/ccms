@@ -1,0 +1,440 @@
+<div class="container">
+    <div class="form-group">
+        <form #caseForm="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="fields-row">
+                <div>
+                    <label for="caseNature">Case Nature</label>
+                    <select id="caseNature" [(ngModel)]="selectedCaseNature" name="caseNatureControl" required
+                        #caseNature="ngModel">
+                        <option [ngValue]="undefined" disabled selected>-- Select --</option>
+                        <option *ngFor="let item of caseType" [value]="item.case_type_code">
+                            {{ item.type_name }} ({{item.case_type_code}})
+                        </option>
+                    </select>
+                    <small *ngIf="caseNature.invalid && caseNature.touched">
+                        Case Nature is required
+                    </small>
+                </div>
+
+                <div>
+                    <label>Case Number</label>
+                    <input type="number" placeholder="Enter Case Number" name="case_number" [(ngModel)]="caseNumber"
+                        required #case_number="ngModel">
+                    <small *ngIf="case_number.invalid && case_number.touched">
+                        Case Number is required
+                    </small>
+                </div>
+
+                <div>
+                    <label>Case Year</label>
+                    <select name="yearControl" [(ngModel)]="selectedYear" required #yearControl="ngModel">
+                        <option [ngValue]="undefined" disabled selected>-- Select --</option>
+                        <option *ngFor="let item of year" [value]="item.year">{{item.year}}</option>
+                    </select>
+                    <small *ngIf="yearControl.invalid && yearControl.touched">
+                        Year is required
+                    </small>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="submit" [disabled]="caseForm.invalid">Search</button>
+                <button type="reset" (click)="reset()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="form-group" *ngIf="showContainer">
+        <h3 style="color: green; display: flex; align-items: center; justify-content: center;margin-bottom: 10px;">
+            Case
+            Details</h3>
+        <div class="table-group">
+            <table>
+                <thead>
+                    <tr>
+                        <th>SNO</th>
+                        <th>Case No</th>
+                        <th>CINO</th>
+                        <th>Court</th>
+                        <th>Petitioner</th>
+                        <th>Petitioner's Advo</th>
+                        <th>Respondent</th>
+                        <th>Respondent Advo</th>
+                        <th>Last Hearing</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>{{case_type_name}}</td>
+                        <td>{{cino}}</td>
+                        <td>{{courtName}}</td>
+                        <td>{{pet_name}}</td>
+                        <td>{{pet_adv}}</td>
+                        <td>{{res_name}}</td>
+                        <td>{{res_adv}}</td>
+                        <td>{{lastHearing}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+        <!-- /// -->
+        <div class="more-info-btn-wrap">
+            <button type="button" (click)="toggleMoreInfo()">
+                {{ showMoreInfo ? 'Hide Info' : 'More Info' }}
+            </button>
+        </div>
+
+        <!-- Detail card -->
+        <div class="info-section" *ngIf="showMoreInfo">
+
+            <!-- PRIMARY INFO HERO -->
+            <div class="case-hero">
+
+                <!-- Top row: Case number + status badges -->
+                <div class="hero-top">
+                    <div class="hero-identity">
+                        <span class="hero-label">Case No.</span>
+                        <h2 class="hero-caseno">{{ caseDetail?.reg_no }}/{{ caseDetail?.reg_year }}</h2>
+                        <span class="hero-cino">CINO: {{ caseDetail?.cino || '—' }}</span>
+                    </div>
+                    <div class="hero-badges">
+                        <span class="badge"
+                            [ngClass]="caseDetail?.pend_disp === 'P' ? 'badge-pending' : 'badge-disposed'">
+                            {{ caseDetail?.pend_disp === 'P' ? 'Pending' : 'Disposed' }}
+                        </span>
+                        <span class="badge badge-type">{{ caseDetail?.type_name_reg || '—' }}</span>
+                    </div>
+                </div>
+
+                <!-- Metric strip -->
+                <div class="hero-metrics">
+                    <div class="hero-metric">
+                        <span class="metric-label">Filing date</span>
+                        <span class="metric-val">{{ caseDetail?.date_of_filling ? (caseDetail.date_of_filling |
+                            date:'dd/MM/yyyy') : '—' }}</span>
+                    </div>
+                    <div class="hero-metric">
+                        <span class="metric-label">Registration date</span>
+                        <span class="metric-val">{{ caseDetail?.dt_regis ? (caseDetail.dt_regis | date:'dd/MM/yyyy') :
+                            '—' }}</span>
+                    </div>
+                    <div class="hero-metric">
+                        <span class="metric-label">Next listing</span>
+                        <span class="metric-val highlight">{{ caseDetail?.date_next_list ? (caseDetail.date_next_list |
+                            date:'dd/MM/yyyy') : '—' }}</span>
+                    </div>
+
+                    <div class="hero-metric">
+                        <span class="metric-label">Coram</span>
+                        <span class="metric-val">{{ caseDetail?.coram || '—' }}</span>
+                    </div>
+                    <div class="hero-metric">
+                        <span class="metric-label">Court</span>
+                        <span class="metric-val">{{ caseDetail?.court_est_name || '—' }}</span>
+                    </div>
+                </div>
+
+                <!-- Parties row -->
+                <div class="hero-parties">
+                    <div class="party-box">
+                        <span class="party-role">Petitioner</span>
+                        <span class="party-name">{{ caseDetail?.pet_name || '—' }}</span>
+                        <span class="party-adv">Adv. {{ caseDetail?.pet_adv || '—' }}</span>
+                    </div>
+                    <div class="vs-badge">vs</div>
+                    <div class="party-box party-box--res">
+                        <span class="party-role">Respondent</span>
+                        <span class="party-name">{{ caseDetail?.res_name || '—' }}</span>
+                        <span class="party-adv">Adv. {{ caseDetail?.res_adv || '—' }}</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- 1. Case Information -->
+            <div class="detail-section">
+                <div class="sec-header">
+                    Case Information
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <span class="detail-label">CINO</span>
+                        <span class="detail-value">{{ caseDetail?.cino || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">AGNO</span>
+                        <span class="detail-value">{{ agno || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Case Type (Filing)</span>
+                        <span class="detail-value">{{ caseDetail?.type_name_fil || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Case Type (Reg)</span>
+                        <span class="detail-value">{{ caseDetail?.type_name_reg || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Filing No / Year</span>
+                        <span class="detail-value">{{ caseDetail?.fil_no }} / {{ caseDetail?.fil_year }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Reg No / Year</span>
+                        <span class="detail-value">{{ caseDetail?.reg_no }} / {{ caseDetail?.reg_year }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Date of Filing</span>
+                        <span class="detail-value">{{ caseDetail?.date_of_filing || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Date of Registration</span>
+                        <span class="detail-value">{{ caseDetail?.dt_regis || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Pend / Disp</span>
+                        <span class="detail-value">{{ caseDetail?.pend_disp || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Date of Decision</span>
+                        <span class="detail-value">{{ caseDetail?.date_of_decision || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Disposal Type</span>
+                        <span class="detail-value">{{ caseDetail?.disposal_type || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Purpose</span>
+                        <span class="detail-value">{{ caseDetail?.purpose_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Main Matter CINO</span>
+                        <span class="detail-value">{{ caseDetail?.main_matter_cino || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Date Filing Disp</span>
+                        <span class="detail-value">{{ caseDetail?.date_filing_disp || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Reason for Rejection</span>
+                        <span class="detail-value">{{ caseDetail?.reason_for_rej || '—' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Parties -->
+            <div class="detail-section">
+                <div class="sec-header">
+                    Parties
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <span class="detail-label">Petitioner</span>
+                        <span class="detail-value">{{ caseDetail?.pet_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Petitioner Advocate</span>
+                        <span class="detail-value">{{ caseDetail?.pet_adv || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Pet. Legal Heir</span>
+                        <span class="detail-value">{{ caseDetail?.pet_legal_heir || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Respondent</span>
+                        <span class="detail-value">{{ caseDetail?.res_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Respondent Advocate</span>
+                        <span class="detail-value">{{ caseDetail?.res_adv || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Res. Legal Heir</span>
+                        <span class="detail-value">{{ caseDetail?.res_legal_heir || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Extra Petitioners</span>
+                        <span class="detail-value">{{ caseDetail?.pet_extra_party || '—' }}</span>
+                    </div>
+                    <div class="detail-field ">
+                        <span class="detail-label">Extra Respondents</span>
+                        <span class="detail-value">{{ caseDetail?.res_extra_party || '—' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Court & Bench -->
+            <div class="detail-section">
+                <div class="sec-header">
+                    Court &amp; Bench
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <span class="detail-label">Court Name</span>
+                        <span class="detail-value">{{ caseDetail?.court_est_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Est. Code</span>
+                        <span class="detail-value">{{ caseDetail?.est_code || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">State</span>
+                        <span class="detail-value">{{ caseDetail?.state_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">District</span>
+                        <span class="detail-value">{{ caseDetail?.dist_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Bench Name</span>
+                        <span class="detail-value">{{ caseDetail?.bench_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Bench Type</span>
+                        <span class="detail-value">{{ caseDetail?.bench_type || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Judicial Branch</span>
+                        <span class="detail-value">{{ caseDetail?.judicial_branch || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Coram</span>
+                        <span class="detail-value">{{ caseDetail?.coram || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Designation</span>
+                        <span class="detail-value">{{ caseDetail?.desgname || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Causelist Type</span>
+                        <span class="detail-value">{{ caseDetail?.causelist_type || '—' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Hearing Dates -->
+            <div class="detail-section">
+                <div class="sec-header">
+                    Hearing Dates
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <span class="detail-label">First Listing</span>
+                        <span class="detail-value">{{ caseDetail?.date_first_list || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Last Listing</span>
+                        <span class="detail-value">{{ caseDetail?.date_last_list || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Next Listing</span>
+                        <span class="detail-value">{{ caseDetail?.date_next_list || '—' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. FIR Details -->
+            <div class="detail-section">
+                <div class="sec-header">
+                    FIR Details
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <span class="detail-label">FIR No</span>
+                        <span class="detail-value">{{ caseDetail?.fir_no || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">FIR Year</span>
+                        <span class="detail-value">{{ caseDetail?.fir_year || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Police Station</span>
+                        <span class="detail-value">{{ caseDetail?.police_station || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">PS Code</span>
+                        <span class="detail-value">{{ caseDetail?.police_st_code || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Uniform Code</span>
+                        <span class="detail-value">{{ caseDetail?.uniform_code || '—' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Lower Court -->
+            <!-- <div class="detail-section">
+                <div class="sec-header">
+                    <i class="icon">⚖️</i> Lower Court
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <span class="detail-label">Court Name</span>
+                        <span class="detail-value">{{ caseDetail?.lower_court_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Case No</span>
+                        <span class="detail-value">{{ caseDetail?.lower_court_caseno || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Decision Date</span>
+                        <span class="detail-value">{{ caseDetail?.lower_court_dec_dt || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Trial Court Name</span>
+                        <span class="detail-value">{{ caseDetail?.trial_lower_court_name || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Trial Case No</span>
+                        <span class="detail-value">{{ caseDetail?.trial_lower_court_caseno || '—' }}</span>
+                    </div>
+                    <div class="detail-field">
+                        <span class="detail-label">Trial Decision Date</span>
+                        <span class="detail-value">{{ caseDetail?.trial_lower_court_dec_dt || '—' }}</span>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- 7. Orders & Acts -->
+            <!-- <div class="detail-section">
+                <div class="sec-header">
+                    <i class="icon">📜</i> Orders &amp; Acts
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-field detail-field--full">
+                        <span class="detail-label">Acts</span>
+                        <span class="detail-value">{{ caseDetail?.acts || '—' }}</span>
+                    </div>
+                    <div class="detail-field detail-field--full">
+                        <span class="detail-label">Interim Order</span>
+                        <span class="detail-value">{{ caseDetail?.interimorder || '—' }}</span>
+                    </div>
+                    <div class="detail-field detail-field--full">
+                        <span class="detail-label">Final Order</span>
+                        <span class="detail-value">{{ caseDetail?.finalorder || '—' }}</span>
+                    </div>
+                    <div class="detail-field detail-field--full">
+                        <span class="detail-label">Short Order</span>
+                        <span class="detail-value">{{ caseDetail?.short_order || '—' }}</span>
+                    </div>
+                    <div class="detail-field detail-field--full">
+                        <span class="detail-label">Objections</span>
+                        <span class="detail-value">{{ caseDetail?.objections || '—' }}</span>
+                    </div>
+                    <div class="detail-field detail-field--full">
+                        <span class="detail-label">IA Filings</span>
+                        <span class="detail-value">{{ caseDetail?.iafiling || '—' }}</span>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+</div>

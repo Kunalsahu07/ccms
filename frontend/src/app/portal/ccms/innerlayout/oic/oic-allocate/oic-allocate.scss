@@ -1,0 +1,160 @@
+.form-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+.form-title {
+  text-align: center;
+  color: #333;
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* Metadata Display: Balanced 2-Column Responsive Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 50px;
+}
+
+/* Row wrapper lining up labels beautifully alongside input elements */
+.form-group {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+}
+
+.form-group label {
+  color: #444;
+  font-size: 14px;
+}
+
+/* Matching the exact texture details of standard input boxes */
+input[type="text"], select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+/* Greyed-out look for read-only fields */
+input:disabled {
+  background-color: #e9ecef;
+  color: #495057;
+  border-color: #ced4da;
+  cursor: not-allowed;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 30px 0;
+}
+
+/* Bottom elements structural split */
+.bottom-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.left-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Tree UI checkbox structuring */
+.checkbox-section {
+  display: flex;
+}
+
+.section-label {
+  width: 200px;
+  font-size: 14px;
+  color: #444;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.tree-icon {
+  color: #777;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+/* Alignment adjusting for the Remarks block */
+.remarks-group {
+  align-items: flex-start;
+}
+
+.remarks-group label {
+  margin-top: 6px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* Footer Control Button elements */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.btn {
+  padding: 10px 65px;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-submit {
+  background-color: #007bff;
+}
+
+.btn-close {
+  background-color: #dc3545;
+}
+
+/* Responsive breakpoint styling layout logic for smaller device profiles */
+@media (max-width: 850px) {
+  .grid-container, .bottom-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .form-group {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+  
+  .checkbox-section {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

@@ -1,0 +1,212 @@
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card */
+.form-group {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+/* Form layout: fields row + button row */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: rem;
+}
+
+/* First row — all 3 fields side by side */
+.fields-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1.5fr;
+    gap: 1rem;
+    align-items: end;
+
+
+}
+
+/* Each field wrapper */
+.fields-row>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 75px;
+}
+
+// .btn1 {
+//     padding: 25px;
+// }
+
+// .btn2 {
+//     padding: 1;
+// }
+
+/* Labels */
+label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+/* Inputs & Selects */
+input[type="number"],
+select {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #111827;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s, background 0.15s;
+    box-sizing: border-box;
+}
+
+input[type="number"]:hover,
+select:hover {
+    border-color: #d1d5db;
+    background: #f3f4f6;
+}
+
+input[type="number"]:focus,
+select:focus {
+    border-color: #6366f1;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+input[type="number"]::placeholder {
+    color: #9ca3af;
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #111827;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s, background 0.15s;
+    box-sizing: border-box;
+}
+
+/* Custom select arrow */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+/* Second row — button */
+
+/* Submit button */
+button[type="submit"] {
+    height: 42px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.01em;
+    margin-top: 17px;
+}
+
+
+
+button[type="submit"]:hover {
+    background: #4338ca;
+}
+
+button[type="submit"]:active {
+    background: #3730a3;
+    transform: scale(0.98);
+}
+
+button[type="reset"] {
+    height: 42px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #ec4848;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.01em;
+    margin-top: 17px;
+
+}
+
+small {
+    color: red;
+    display: block;
+    height: 10px;
+    /* fixed instead of min-height */
+    font-size: 10px;
+}
+
+.case_already {
+    text-align: center;
+    color: rgb(47, 220, 47);
+    font-size: 20px;
+}
+
+.addCaseInDept {
+    background-color: #25841d;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 5px;
+    margin-top: 20px;
+    margin-left: 60px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 6px rgba(26, 115, 232, 0.4);
+}
+
+.addCaseInDept:hover {
+    background-color: #075000;
+    box-shadow: 0 4px 12px rgba(169, 202, 244, 0.5);
+}
+
+.addCaseInDept:active {
+    transform: scale(0.97);
+    background-color: #0f4a9c;
+}
+
+.addCaseInDept:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3);
+}
+
+.addCaseInDept .btn-icon {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}

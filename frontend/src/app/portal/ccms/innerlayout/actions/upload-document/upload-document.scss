@@ -1,0 +1,377 @@
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card */
+.form-group {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+/* Form layout: fields row + button row */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: rem;
+}
+
+/* First row — all 3 fields side by side */
+.fields-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1rem;
+    align-items: end;
+
+}
+
+/* Each field wrapper */
+.fields-row>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 75px;
+}
+
+// .btn1 {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// .btn2 {}
+
+.btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Labels */
+label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+/* Inputs & Selects */
+input[type="number"],
+select {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #111827;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s, background 0.15s;
+    box-sizing: border-box;
+}
+
+input[type="number"]:hover,
+select:hover {
+    border-color: #d1d5db;
+    background: #f3f4f6;
+}
+
+input[type="number"]:focus,
+select:focus {
+    border-color: #6366f1;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+input[type="number"]::placeholder {
+    color: #9ca3af;
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #111827;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s, background 0.15s;
+    box-sizing: border-box;
+}
+
+/* Custom select arrow */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+/* Second row — button */
+
+/* Submit button */
+button[type="submit"] {
+    height: 42px;
+    width: 20%;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #4f46e5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.01em;
+    margin-top: 17px;
+}
+
+
+
+button[type="submit"]:hover {
+    background: #4338ca;
+}
+
+button[type="submit"]:active {
+    background: #3730a3;
+    transform: scale(0.98);
+}
+
+button[type="reset"] {
+    height: 42px;
+    width: 20%;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    background: #ec4848;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.01em;
+    margin-top: 17px;
+
+}
+
+small {
+    color: red;
+    display: block;
+    height: 10px;
+    /* fixed instead of min-height */
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.case_already {
+    text-align: center;
+    color: rgb(47, 220, 47);
+    font-size: 20px;
+}
+
+// ------------------------------------------------------
+
+.table-group {
+    width: 100%;
+    // margin: 24px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+    background-color: #ffffff;
+}
+
+/* Base table setup */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+}
+
+/* Header row styling */
+thead {
+    background-color: #2C2C2A;
+    border-bottom: 2px solid #edf2f7;
+}
+
+th {
+    padding: 14px 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: #888780;
+    font-weight: bolder;
+    white-space: nowrap;
+}
+
+/* Body row styling */
+tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.15s ease;
+}
+
+/* Highlight row on mouse hover */
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Clean cell padding and text contrast */
+td {
+    padding: 16px 18px;
+    color: #334155;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+/* --- Column-Specific Targeting (No Classes Needed) --- */
+
+
+// ----------------------------------------------------
+
+/* Base form layout using CSS Grid */
+.fields-row {
+    display: grid;
+    /* Automatically handles column widths, squeezing into a grid layout */
+
+    gap: 16px;
+    align-items: flex-end;
+    /* Keeps inputs and the button perfectly aligned at the bottom */
+    border-radius: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin-top: 20px;
+}
+
+/* Give the file input and remark slightly more breathing room in the grid */
+.fields-row>div:has(input[type="file"]),
+.fields-row>div:has(input[type="text"]) {
+    grid-column: span 1;
+}
+
+/* Input groups structural wrapper */
+.fields-row>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 75px;
+}
+
+/* Modern, high-contrast labels */
+.fields-row label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Unified styling for inputs and selects */
+.fields-row input:not([type="file"]),
+.fields-row select {
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #1e293b;
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Custom styling for the tricky native file input */
+.fields-row input[type="file"] {
+    font-size: 14px;
+    color: #64748b;
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 5px;
+}
+
+.fields-row input[type="file"]::file-selector-button {
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 6px;
+    border: 2px solid #e2e8f0;
+    background-color: #9bffcb;
+    color: #334155;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 10px;
+}
+
+.fields-row input[type="file"]::file-selector-button:hover {
+    background-color: #13c64e;
+    color: #0f172a;
+}
+
+/* Focus states for input fields */
+.fields-row input:not([type="file"]):focus,
+.fields-row select:focus {
+    border-color: #3b82f6;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Modern accent Button */
+.fields-row button[type="submit"] {
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #aba7f7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    white-space: nowrap;
+    width: 100%;
+    margin-bottom: 20px;
+    /* Spans full width of its grid cell slot */
+}
+
+.fields-row button[type="submit"]:hover {
+    background-color: #1d4ed8;
+}
+
+.fields-row button[type="submit"]:active {
+    background-color: #1e40af;
+}
+
+/* Responsive adjust for smaller tablets/phones */
+@media (max-width: 768px) {
+    .fields-row {
+        grid-template-columns: 1fr;
+        /* Stack everything into a single column */
+        align-items: stretch;
+    }
+}
+
+
+.btn-open {
+    background-color: #94e4ae;
+    padding: 5px 15px;
+    border-radius: 10px;
+    border-style: none;
+}

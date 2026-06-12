@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="form-group">
+        <form #caseForm="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="fields-row">
+                <div>
+                    <label for="courtName">Court Name</label>
+                    <select name="courtNameControl" id="courtName" [(ngModel)]="selectedCourtName" required
+                        #courtNameRef="ngModel">
+                        <option [ngValue]="undefined" disabled selected>-- Select --</option>
+                        <option *ngFor="let item of courts">{{item}}</option>
+                    </select>
+                    <small *ngIf="courtNameRef.invalid && courtNameRef.touched">
+                        Court Name is required
+                    </small>
+                </div>
+                <div>
+                    <label for="caseNature">Case Nature</label>
+                    <select id="caseNature" [(ngModel)]="selectedCaseNature" name="caseNatureControl" required
+                        #caseNature="ngModel">
+                        <option [ngValue]="undefined" disabled selected>-- Select --</option>
+                        <option *ngFor="let item of caseType" [value]="item.case_type_code">
+                            {{ item.type_name }} ({{item.case_type_code}})
+                        </option>
+                    </select>
+                    <small *ngIf="caseNature.invalid && caseNature.touched">
+                        Case Nature is required
+                    </small>
+                </div>
+
+                <div>
+                    <label>Case Number</label>
+                    <input type="number" placeholder="Enter Case Number" name="case_number" [(ngModel)]="caseNumber"
+                        required #case_number="ngModel">
+                    <small *ngIf="case_number.invalid && case_number.touched">
+                        Case Number is required
+                    </small>
+                </div>
+
+                <div>
+                    <label>Case Year</label>
+                    <select name="yearControl" [(ngModel)]="selectedYear" required #yearControl="ngModel">
+                        <option [ngValue]="undefined" disabled selected>-- Select --</option>
+                        <option *ngFor="let item of year" [value]="item.year">{{item.year}}</option>
+                    </select>
+                    <small *ngIf="yearControl.invalid && yearControl.touched">
+                        Year is required
+                    </small>
+                </div>
+                <div class="btn1"> <button type="submit" [disabled]="caseForm.invalid">Search</button></div>
+                <div class="btn2"><button type="reset" (click)="reset()">Reset</button></div>
+            </div>
+        </form>
+        <small class="case_already" *ngIf="showContainer">{{showText}}</small>
+
+    </div>
+
+
+    <div class="form-group" *ngIf="showContainer">
+        <h3 style="color: green; display: flex; align-items: center; justify-content: center;margin-bottom: 10px;">
+            Case
+            Details</h3>
+        <div class="fields-row">
+
+            <div>
+                <label>Court Name</label>
+                <input type="text" [ngModel]="courtName" [ngModelOptions]="{standalone: true}" disabled>
+            </div>
+            <div>
+                <label>CINO</label>
+                <input type="text" [ngModel]="cino" [ngModelOptions]="{standalone: true}" disabled>
+            </div>
+            <div>
+                <label>Petitioner Name</label>
+                <input type="text" [ngModel]="pet_name" [ngModelOptions]="{standalone: true}" disabled>
+            </div>
+            <div>
+                <label>Respondent Name</label>
+                <input type="text" [ngModel]="res_name" [ngModelOptions]="{standalone: true}" disabled>
+            </div>
+            <div>
+                <button class="addCaseInDept" *ngIf="showbutton">
+                    <span class="btn-icon">＋</span> Add Case In Department
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

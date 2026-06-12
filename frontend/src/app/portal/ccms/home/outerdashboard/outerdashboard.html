@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="content">
+        <app-ccmsheader></app-ccmsheader>
+        <div class="dashboard">
+
+            <!-- Header -->
+            <div class="header">
+                <h1 class="header__title">Case Management Dashboard</h1>
+            </div>
+
+            <!-- Total Card -->
+            <div class="total-card">
+                <span class="material-icons total-card__icon">folder_open</span>
+                <div>
+                    <p class="total-card__label">Total High Court Cases</p>
+                    <p class="total-card__value">{{ formatNumber(total) }}</p>
+                </div>
+                <span class="total-card__badge">All time</span>
+            </div>
+
+            <!-- Category KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi" *ngFor="let cat of categories" [ngStyle]="{'background-color': cat.cardBg}">
+                    <div class="kpi__top">
+                        <span class="material-icons kpi__icon" [style.color]="cat.color">{{ cat.icon }}</span>
+                        <span class="kpi__badge" [style.background]="cat.badgeBg" [style.color]="cat.badgeText">
+                            {{ getPercent(cat.value) }}%
+                        </span>
+                    </div>
+                    <p class="kpi__value" [style.color]="cat.color">{{ formatNumber(cat.value) }}</p>
+                    <p class="kpi__label" [style.color]="cat.topic" [style.font-weight]="cat.bold">{{ cat.label }}</p>
+                    <div class="kpi__bar-track">
+                        <div class="kpi__bar-fill" [style.width.%]="getPercent(cat.value)"
+                            [style.background]="cat.color">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ── Charts Row ── -->
+            <div class="charts-row">
+
+                <!-- Donut Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-card__title">
+                        <span class="material-icons">donut_large</span>
+                        Case Distribution
+                    </h2>
+                    <div class="chart-card__body">
+                        <canvas #donutCanvas></canvas>
+                    </div>
+                </div>
+
+                <!-- Bar Chart -->
+                <div class="chart-card">
+                    <h2 class="chart-card__title">
+                        <span class="material-icons">bar_chart</span>
+                        Cases by Category
+                    </h2>
+                    <div class="chart-card__body">
+                        <canvas #barCanvas></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <app-ccmsfooter></app-ccmsfooter>
+</div>

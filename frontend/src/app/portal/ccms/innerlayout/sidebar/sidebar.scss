@@ -1,0 +1,622 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.sidebar {
+  width: 220px;
+  height: 100%;
+  // background: #ffffff;
+  // background: #F8FAFC;
+  background: #0B132B;
+  border-right: 1px solid #E2E8F0;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+
+  // ── Collapsed state ──────────────────────────────────────
+  &.collapsed {
+    width: 60px;
+
+    .logo-text,
+    .nav-label,
+    .nav-badge,
+    .nav-section,
+    .user-info {
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .nav-section {
+      height: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    .user-row {
+      justify-content: center;
+      padding: 8px 0;
+    }
+  }
+
+  :host {
+    display: block;
+    height: 100%;
+  }
+
+  // ── Sidebar shell ─────────────────────────────────────────
+  .sidebar {
+    width: 220px;
+    height: 100%;
+    background: #ffffff;
+    border-right: 1px solid #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+
+    &.collapsed {
+      width: 60px;
+      overflow: visible; // allow flyout to escape
+
+      .logo-text,
+      .nav-label,
+      .nav-badge,
+      .nav-section,
+      .user-info,
+      .actions-label,
+      .chevron,
+      .sub-arrow {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .nav-section {
+        height: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      .user-row {
+        justify-content: center;
+        padding: 8px 0;
+      }
+
+      .nav-item {
+        justify-content: center;
+      }
+
+      .actions-btn {
+        justify-content: center;
+        padding: 9px 0;
+      }
+    }
+  }
+
+  .nav {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    // Chrome, Safari, Edge
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE / Edge legacy
+  }
+
+  // ── Header ────────────────────────────────────────────────
+  .sidebar-header {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    flex-shrink: 0;
+
+  }
+
+  .logo-mark {
+    background: transparent; // remove the #534ab7 purple
+    border-radius: 0;
+
+  }
+
+  .logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+  }
+
+  .logo-text {
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: #ffffff;
+    letter-spacing: 5px;
+    white-space: nowrap;
+    transition: opacity 0.22s ease, width 0.22s ease;
+  }
+
+  // ── Navigation ────────────────────────────────────────────
+  .nav {
+    flex: 1;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .sidebar.collapsed & {
+      overflow: visible;
+    }
+
+    // let flyouts escape
+  }
+
+  .nav-section {
+    font-size: 10px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 8px 8px 4px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: opacity 0.22s ease, height 0.22s ease;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #ffffffb9;
+    font-size: 13.5px;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    i {
+      font-size: 19px;
+      flex-shrink: 0;
+      color: #ffffffba;
+      transition: color 0.15s ease;
+    }
+
+    &:hover {
+      background: #ffffff67;
+      color: #ffffffd5;
+
+      i {
+        color: #ffffffd5;
+      }
+    }
+
+    &.active {
+      background: #ffffff67;
+      color: #ffffffd5;
+      font-weight: 500;
+
+      i {
+        color: #38ff9f;
+      }
+    }
+  }
+
+  .nav-label {
+    flex: 1;
+    transition: opacity 0.22s ease, width 0.22s ease;
+  }
+
+  .nav-badge {
+    background: #e24b4a;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: opacity 0.22s ease;
+  }
+
+  // ── Submenu arrow ─────────────────────────────────────────
+  .sub-arrow {
+    font-size: 14px;
+    color: #aaa;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: transform 0.22s ease, opacity 0.22s ease, width 0.22s ease;
+
+    &.rotated {
+      transform: rotate(90deg);
+    }
+  }
+
+  // ── Nav group (parent with children) ─────────────────────
+  .nav-group {
+    position: relative;
+
+    // show flyout on hover when sidebar is collapsed
+    .sidebar.collapsed &:hover .submenu-flyout {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
+    }
+  }
+
+  // ── Inline accordion (expanded sidebar) ───────────────────
+  .submenu-inline {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.open {
+      max-height: 300px;
+    }
+
+    .sidebar.collapsed & {
+      max-height: 0 !important;
+    }
+  }
+
+  .sub-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 7px 10px 7px 28px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    border-radius: 7px;
+    text-align: left;
+    white-space: nowrap;
+    transition: background 0.14s ease, color 0.14s ease;
+
+    i {
+      font-size: 15px;
+      color: #aaa;
+    }
+
+    &:hover {
+      color: #4be7ff;
+
+      i {
+        color: #534ab7;
+      }
+    }
+
+    &.active {
+      color: #4be7ff;
+      font-weight: 500;
+
+      i {
+        color: #5f20ff;
+      }
+    }
+  }
+
+  .sub-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.14s;
+
+    // .sub-item.active & {
+    //   background: #534ab7;
+    // }
+
+    // .sub-item:hover & {
+    //   background: #534ab7;
+    // }
+  }
+
+  // .sub-label {
+  //   flex: 1;
+  // }
+
+  // ── Flyout panel (collapsed sidebar) ──────────────────────
+  .submenu-flyout {
+    position: absolute;
+    left: calc(100% + 8px);
+    top: 0;
+    min-width: 190px;
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    z-index: 300;
+    padding: 6px;
+    opacity: 0;
+    transform: translateX(-8px);
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+
+    // only visible in collapsed mode (nav-group hover handles it)
+    .sidebar:not(.collapsed) & {
+      display: none;
+    }
+  }
+
+  .flyout-title {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: #aaa;
+    padding: 4px 8px 6px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 4px;
+  }
+
+  .flyout-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    padding: 9px 10px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    color: #444;
+    cursor: pointer;
+    border-radius: 7px;
+    text-align: left;
+    white-space: nowrap;
+    transition: background 0.14s ease, color 0.14s ease;
+
+    i {
+      font-size: 17px;
+      color: #888;
+    }
+
+    &:hover {
+      background: #f5f4ff;
+      color: #534ab7;
+
+      i {
+        color: #534ab7;
+      }
+    }
+
+    &.active {
+      background: #eeedfe;
+      color: #534ab7;
+      font-weight: 500;
+
+      i {
+        color: #534ab7;
+      }
+    }
+  }
+
+  // ── Footer ────────────────────────────────────────────────
+  .sidebar-footer {
+    padding: 10px 8px 14px;
+    border-top: 1px solid #f0f0f0;
+    flex-shrink: 0;
+  }
+
+  .user-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #d4e8fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #185fa5;
+    flex-shrink: 0;
+  }
+
+  .user-info {
+    overflow: hidden;
+    transition: opacity 0.22s ease, width 0.22s ease;
+  }
+
+  .user-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a1a;
+    white-space: nowrap;
+  }
+
+  .user-role {
+    font-size: 11px;
+    font-weight: 500;
+    color: #97ffe3;
+    white-space: nowrap;
+  }
+}
+
+// ── Header ────────────────────────────────────────────────
+.sidebar-header {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #534ab7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+
+// ── Navigation ────────────────────────────────────────────
+.nav {
+  flex: 1;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.nav-section {
+  font-size: 10px;
+  font-weight: 600;
+  color: #aaaaaa;
+  padding: 8px 8px 4px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.22s ease, height 0.22s ease;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  i {
+    font-size: 19px;
+    flex-shrink: 0;
+    color: #ffffff;
+    transition: color 0.15s ease;
+  }
+
+  &:hover {
+    // background: #dbdbdb;
+    color: #9b95e0;
+
+    i {
+      color: #534ab7;
+    }
+  }
+
+  &.active {
+    // background: #eeedfe;
+    background: #0397b13f;
+    // color: #534ab7;
+    color: #ffffff;
+    font-weight: 500;
+
+    i {
+      color: #534ab7;
+    }
+  }
+}
+
+.nav-label {
+  flex: 1;
+  transition: opacity 0.22s ease, width 0.22s ease;
+}
+
+.nav-badge {
+  background: #e24b4a;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: opacity 0.22s ease;
+}
+
+// ── Footer ────────────────────────────────────────────────
+.sidebar-footer {
+  padding: 10px 8px 14px;
+  border-top: 1px solid #200101;
+  flex-shrink: 0;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  background: rgba(255, 251, 251, 0.466);
+
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #185fa5;
+  flex-shrink: 0;
+}
+
+.user-info {
+  overflow: hidden;
+  color: rgb(154, 36, 36);
+  transition: opacity 0.22s ease, width 0.22s ease;
+}
+
+.user-info.user-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  white-space: nowrap;
+}
+
+.user-role {
+  font-size: 11px;
+  color: #be0000;
+  white-space: nowrap;
+}

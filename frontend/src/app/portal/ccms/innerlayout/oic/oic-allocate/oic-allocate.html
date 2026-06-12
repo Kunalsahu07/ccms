@@ -1,0 +1,97 @@
+<div class="form-container">
+    <h2 class="form-title">Allocate Details</h2>
+
+    <form>
+        <div class="grid-container">
+
+            <div class="form-group">
+                <label for="registration">Registration</label>
+                <input type="text" id="registration" [value]="caseType + '/' + caseNo + '/' + caseYear" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="cnr">CNR</label>
+                <input type="text" id="cnr" [value]="caseDetails?.cino" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="petitioner">Petitioner Name</label>
+                <input type="text" id="petitioner" [value]="caseDetails?.pet_name" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="petitionerAdv">Petitioner Advocate Name</label>
+                <input type="text" id="petitionerAdv" [value]="caseDetails?.pet_adv" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="respondent">Respondent Name</label>
+                <input type="text" id="respondent" [value]="caseDetails?.res_name" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="respondentAdv">Respondent Advocate Name</label>
+                <input type="text" id="respondentAdv" [value]="caseDetails?.res_adv" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="court">Court Name</label>
+                <input type="text" id="court" [value]="caseDetails?.court_est_name" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="hearingDate">Next Hearing Date</label>
+                <input type="text" id="hearingDate"
+                    [value]="caseDetails?.date_next_list ?(caseDetails.date_next_list | date:'dd/MMM/yyyy') : '-'"
+                    disabled>
+            </div>
+
+        </div>
+
+        <hr class="divider">
+
+        <div class="bottom-container">
+
+            <div class="left-actions">
+                <div class="form-group">
+                    <label for="action">Action</label>
+                    <select id="action">
+                        <option value="">--Select--</option>
+                        <option value="1">Forward</option>
+                        <option value="2">Reject</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-section">
+                    <label class="section-label">Office(s) Copy To</label>
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox">
+                            <span class="tree-icon">⊞</span> <input type="checkbox" id="dir"> <label
+                                for="dir">DIR</label>
+                        </label>
+                        <label>
+                            <input type="checkbox">
+                            <span class="tree-icon">⊞</span> <input type="checkbox" id="section"> <label
+                                for="section">SECTION</label>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-remarks">
+                <div class="form-group remarks-group">
+                    <label for="remarks">Remarks</label>
+                    <textarea id="remarks" rows="3"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="button-group">
+            <button type="submit" class="btn btn-submit">Submit</button>
+            <button type="button" class="btn btn-close">Close</button>
+        </div>
+
+    </form>
+</div>

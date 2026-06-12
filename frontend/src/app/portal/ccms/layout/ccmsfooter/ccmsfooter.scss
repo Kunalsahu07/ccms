@@ -1,0 +1,37 @@
+/* Footer styles */
+
+.footer {
+    background-color: #2c3e50;
+    /* Matches the nav bar for a unified look */
+    color: white;
+    padding: 20px 10px;
+    /* Changed from fixed height to padding */
+    height: auto;
+    /* Allows it to grow with the text */
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 13px;
+    /* Standard size for legal/footer text */
+    line-height: 1.6;
+    /* Adds space between the lines */
+
+}
+
+.footer-content strong {
+    color: #ecf0f1;
+    /* Makes the important names slightly brighter */
+}
+
+.footer .address {
+    margin-top: 10px;
+    font-style: italic;
+    color: #bdc3c7;
+    /* Makes the address a subtle grey */
+}
+
+/* Ensure the container doesn't cut off the footer */
+.container {
+    height: auto;
+    /* Changed from 100vh to auto if content is long */
+    min-height: 100vh;
+}

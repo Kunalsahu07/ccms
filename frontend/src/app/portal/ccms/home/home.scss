@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* Debug color */
+    height: 100vh;
+    min-width: 100%;
+}
+
+.content {
+    margin-top: 70px;
+    background-color: green;
+    /* Debug color */
+    flex: 1;
+}

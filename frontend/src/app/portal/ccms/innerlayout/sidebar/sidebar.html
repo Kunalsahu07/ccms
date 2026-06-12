@@ -1,0 +1,97 @@
+<aside class="sidebar" [class.collapsed]="collapsed$ | async">
+
+  <!-- ── Logo ──────────────────────────────────────────── -->
+  <div class="sidebar-header">
+    <div class="logo-mark">
+      <img src="/images/logoCourt.png" alt="Court" class="logo-img">
+    </div>
+    <span class="logo-text">CCMS</span>
+  </div>
+
+
+  <!-- ── Main Navigation ───────────────────────────────── -->
+  <nav class="nav">
+    <span class="nav-section">Main</span>
+
+    <ng-container *ngFor="let item of filteredMainNav">
+
+      <!-- Item WITH children (submenu parent) -->
+      <div *ngIf="hasChildren(item)" class="nav-group" [class.group-active]="isActive(item)"
+        [class.group-expanded]="isExpanded(item)">
+
+        <!-- Parent button -->
+        <button class="nav-item" [class.active]="isActive(item)" (click)="navigate(item)"
+          [title]="(collapsed$ | async) ? item.label : ''">
+          <i class="ti ti-{{ item.icon }}"></i>
+          <span class="nav-label">{{ item.label }}</span>
+          <i class="ti ti-chevron-right sub-arrow" [class.rotated]="isExpanded(item)"></i>
+        </button>
+
+        <!-- Expanded sidebar: inline accordion -->
+        <div class="submenu-inline" [class.open]="isExpanded(item)">
+          <button *ngFor="let child of item.children" class="sub-item" [class.active]="isChildActive(child.route)"
+            (click)="navigateChild(child)">
+            <span class="sub-dot"></span>
+            <i *ngIf="child.icon" class="ti ti-{{ child.icon }}"></i>
+            <span class="sub-label">{{ child.label }}</span>
+          </button>
+        </div>
+
+        <!-- Collapsed sidebar: flyout panel on hover -->
+        <div class="submenu-flyout">
+          <div class="flyout-title">{{ item.label }}</div>
+          <button *ngFor="let child of item.children" class="flyout-item" [class.active]="isChildActive(child.route)"
+            (click)="navigateChild(child)">
+            <i *ngIf="child.icon" class="ti ti-{{ child.icon }}"></i>
+            <span>{{ child.label }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Item WITHOUT children (plain route) -->
+      <button *ngIf="!hasChildren(item)" class="nav-item" [class.active]="isActive(item)" (click)="navigate(item)"
+        [title]="(collapsed$ | async) ? item.label : ''">
+        <i class="ti ti-{{ item.icon }}"></i>
+        <span class="nav-label">{{ item.label }}</span>
+        <span class="nav-badge" *ngIf="item.badge">{{ item.badge }}</span>
+      </button>
+
+    </ng-container>
+
+    <span class="nav-section">Help</span>
+
+    <button *ngFor="let item of filteredSecondaryNav" class="nav-item" [class.active]="isActive(item)"
+      (click)="navigate(item)" [title]="(collapsed$ | async) ? item.label : ''">
+      <i class="ti ti-{{ item.icon }}"></i>
+      <span class="nav-label">{{ item.label }}</span>
+    </button>
+  </nav>
+
+  <!-- ── User Footer ────────────────────────────────────── -->
+  <div class="sidebar-footer">
+    <div class="user-row">
+      <div class="avatar cool-svg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <!-- Head/Hair Outline -->
+          <path d="M12 2C8.5 2 6 4.5 6 8v1c0 .5.5 1 1 1h10c.5 0 1-.5 1-1V8c0-3.5-2.5-6-6-6z" fill="#333" />
+          <!-- Face -->
+          <path d="M6 9c0 3.3 2.7 6 6 6s6-2.7 6-6H6z" fill="#ffdbac" />
+          <!-- Sunglasses -->
+          <path
+            d="M5 9h14v2.5c0 .8-.7 1.5-1.5 1.5H16c-.8 0-1.5-.7-1.5-1.5V11h-1v1.5c0 .8-.7 1.5-1.5 1.5H8.5C7.7 14 7 13.3 7 12.5V11h-1v1.5C6 11.7 5.3 11 5 10.2V9z"
+            fill="#111" />
+          <!-- Cool Smirk/Mouth -->
+          <path d="M11 13.5h2c0 .3-.2.5-.5.5h-1c-.3 0-.5-.2-.5-.5z" fill="#333" />
+          <!-- Clothes/Collar -->
+          <path d="M4 20c0-2.2 1.8-4 4-4h8c2.2 0 4 1.8 4 4v2H4v-2z" fill="#222" />
+          <!-- Inner Jacket/Shirt -->
+          <path d="M10 16l2 3 2-3h-4z" fill="#ff3366" />
+        </svg>
+      </div>
+      <div class="user-info">
+        <div class="user-name">{{email}}</div>
+        <div class="user-role">{{fullname}}</div>
+      </div>
+    </div>
+  </div>
+</aside>

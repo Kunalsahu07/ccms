@@ -1,0 +1,215 @@
+<!-- Detail card -->
+<div class="case-detail-container" *ngIf="showMoreInfo">
+
+    <!-- Back Action Strip -->
+    <div class="action-strip">
+        <button class="btn-back" (click)="goBack()">
+            <span class="arrow">←</span> Back
+        </button>
+    </div>
+
+    <!-- MODERN HERO HEADER -->
+    <div class="case-header-card">
+        <div class="header-main-info">
+            <div class="case-title-row">
+                <span class="meta-label">CASE NUMBER</span>
+                <h2 class="case-number">{{ caseDetail?.reg_no }}/{{ caseDetail?.reg_year }}</h2>
+                <span class="badge" [ngClass]="caseDetail?.pend_disp === 'P' ? 'badge-pending' : 'badge-disposed'">
+                    {{ caseDetail?.pend_disp === 'P' ? 'Pending' : 'Disposed' }}
+                </span>
+            </div>
+            <div class="cino-row">
+                <span class="cino-text"><strong>CINO:</strong> {{ caseDetail?.cino || '—' }}</span>
+                <span class="divider">|</span>
+                <span class="type-text">{{ caseDetail?.type_name_reg || '—' }}</span>
+            </div>
+        </div>
+
+        <!-- Quick Metric Pill Strip -->
+        <div class="quick-summary-strip">
+            <div class="summary-pill highlight">
+                <span class="pill-lbl">Next Hearing</span>
+                <span class="pill-val">{{ caseDetail?.date_next_list ? (caseDetail.date_next_list | date:'dd MMM yyyy')
+                    : '—' }}</span>
+            </div>
+            <div class="summary-pill">
+                <span class="pill-lbl">Filing Date</span>
+                <span class="pill-val">{{ caseDetail?.date_of_filling ? (caseDetail.date_of_filling | date:'dd/MM/yyyy')
+                    : '—' }}</span>
+            </div>
+            <div class="summary-pill">
+                <span class="pill-lbl">Court Room</span>
+                <span class="pill-val">{{ caseDetail?.court_est_name || '—' }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABBED CONTENT NAVIGATION -->
+    <div class="tab-system-container">
+        <!-- Tab Headers (Manage active state via component variables) -->
+        <div class="tab-header-bar">
+            <button class="tab-link" [class.active]="activeTab === 0" (click)="setTab(0)">Overview & Parties</button>
+            <button class="tab-link" [class.active]="activeTab === 1" (click)="setTab(1)">Court & Bench</button>
+            <button class="tab-link" [class.active]="activeTab === 2" (click)="setTab(2)">Hearing Details</button>
+            <button class="tab-link" [class.active]="activeTab === 3" (click)="setTab(3)">Police records</button>
+        </div>
+
+        <!-- Tab Panel Body -->
+        <div class="tab-content-panel">
+
+            <!-- Panel 1: Overview & Litigants -->
+            <div class="panel-section" *ngIf="activeTab === 0">
+                <div class="split-grid-2col">
+                    <!-- Petitioner Card -->
+                    <div class="litigant-card petitioner">
+                        <div class="litigant-role">PETITIONER</div>
+                        <h3 class="litigant-name">{{ caseDetail?.pet_name || '—' }}</h3>
+                        <div class="litigant-meta">
+                            <span><strong>Advocate:</strong> {{ caseDetail?.pet_adv || '—' }}</span>
+                            <span><strong>Legal Heir:</strong> {{ caseDetail?.pet_legal_heir || '—' }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Respondent Card -->
+                    <div class="litigant-card respondent">
+                        <div class="litigant-role">RESPONDENT</div>
+                        <h3 class="litigant-name">{{ caseDetail?.res_name || '—' }}</h3>
+                        <div class="litigant-meta">
+                            <span><strong>Advocate:</strong> {{ caseDetail?.res_adv || '—' }}</span>
+                            <span><strong>Legal Heir:</strong> {{ caseDetail?.res_legal_heir || '—' }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-data-table mt-4">
+                    <h4 class="sub-sec-title">Core Information</h4>
+                    <div class="responsive-grid-3col">
+                        <div class="data-cell">
+                            <label>Filing No / Year</label>
+                            <span>{{ caseDetail?.fil_no }} / {{ caseDetail?.fil_year }}</span>
+                        </div>
+                        <div class="data-cell">
+                            <label>AGNO</label>
+                            <span>{{ agno || '—' }}</span>
+                        </div>
+                        <div class="data-cell">
+                            <label>Case Purpose</label>
+                            <span>{{ caseDetail?.purpose_name || '—' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 2: Court & Venue -->
+            <div class="panel-section" *ngIf="activeTab === 1">
+                <h4 class="sub-sec-title">Court & Bench Details</h4>
+                <div class="responsive-grid-3col">
+                    <div class="data-cell">
+                        <label>Court Name</label>
+                        <span>{{ caseDetail?.court_est_name || '—' }}</span>
+                    </div>
+                    <div class="data-cell">
+                        <label>Est Code</label>
+                        <span>{{ caseDetail?.est_code || '—' }}</span>
+                    </div>
+                    <div class="data-cell">
+                        <label>District</label>
+                        <span>{{ caseDetail?.dist_name || '—' }}</span>
+                    </div>
+                    <div class="data-cell">
+                        <label>State</label>
+                        <span>{{ caseDetail?.state_name || '—' }}</span>
+                    </div>
+                </div>
+                <div class="responsive-grid-3col">
+                    <div class="data-cell">
+                        <label>Bench Name</label>
+                        <span>{{ caseDetail?.bench_name || '—' }}</span>
+                    </div>
+                    <div class="data-cell">
+                        <label>Bench Type</label>
+                        <span>{{ caseDetail?.bench_type || '—' }}</span>
+                    </div>
+                    <div class="data-cell">
+                        <label>Judicial Branch</label>
+                        <span>{{ caseDetail?.judicial_branch || '—' }}</span>
+                    </div>
+                    <div class="data-cell">
+                        <label>Coram</label>
+                        <span>{{ caseDetail?.coram || '—' }}</span>
+                    </div>
+
+                </div>
+                <div class="responsive-grid-3col">
+                    <div class="data-cell">
+                        <label>Designation</label>
+                        <span>{{ caseDetail?.desgname || '—' }}</span>
+                    </div>
+                    <div class="data-cell">
+                        <label>CauseList Type</label>
+                        <span>{{ caseDetail?.causelist_type || '—' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 3: Hearing Details -->
+            <div class="panel-section" *ngIf="activeTab === 2">
+                <h4 class="sub-sec-title">Hearing Details</h4>
+                <div class="responsive-grid-3col">
+
+                    <div class="data-cell">
+                        <label>First Listing</label>
+                        <span>{{ caseDetail?.date_first_list ? (caseDetail.date_first_list | date:'dd-MMM-yyyy') : '—'
+                            }}</span>
+                    </div>
+
+                    <div class="data-cell">
+                        <label>Last Listing</label>
+                        <span>{{ caseDetail?.date_last_list ? (caseDetail.date_last_list | date:'dd-MMM-yyyy') : '—'
+                            }}</span>
+                    </div>
+
+                    <div class="data-cell">
+                        <label>Next Listing</label>
+                        <span>{{ caseDetail?.date_next_list ? (caseDetail.date_next_list | date:'dd-MMM-yyyy') : '—'
+                            }}</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Panel 4: Police Details -->
+            <div class="panel-section" *ngIf="activeTab === 3">
+                <h4 class="sub-sec-title">Police Details</h4>
+                <div class="responsive-grid-3col">
+
+                    <div class="data-cell">
+                        <label>FIR No</label>
+                        <span>{{ caseDetail?.fir_no || '—' }}</span>
+                    </div>
+
+                    <div class="data-cell">
+                        <label>FIR Year</label>
+                        <span>{{ caseDetail?.fir_year || '—' }}</span>
+                    </div>
+
+                    <div class="data-cell">
+                        <label>Police Station</label>
+                        <span>{{ caseDetail?.police_station || '—' }}</span>
+                    </div>
+
+                </div>
+                <div class="responsive-grid-3col">
+                    <div class="data-cell">
+                        <label>PS Code</label>
+                        <span>{{ caseDetail?.police_st_code || '—' }}</span>
+                    </div>
+
+                    <div class="data-cell">
+                        <label>Uniform Code</label>
+                        <span>{{ caseDetail?.uniform_code || '—' }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>

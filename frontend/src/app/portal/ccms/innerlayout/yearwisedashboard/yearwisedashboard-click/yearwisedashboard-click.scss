@@ -1,0 +1,733 @@
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Card */
+.form-group {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Form Layout */
+.fields-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.fields-row div {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* Inputs & Select */
+input,
+select {
+    padding: 10px 12px;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Validation Message */
+small {
+    color: #dc2626;
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-group button,
+.more-info-btn-wrap button {
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-group button[type="submit"] {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-group button[type="submit"]:hover {
+    background: #1d4ed8;
+}
+
+.btn-group button[type="reset"] {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.btn-group button[type="reset"]:hover {
+    background: #d1d5db;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.table-wrap {
+    overflow: hidden;
+    border-radius: 16px;
+    background: #dfeee5;
+}
+
+.cases-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Table */
+.table-group {
+    overflow-x: auto;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 1000px;
+    border: 2px solid rgba(36, 8, 87, 0.138);
+}
+
+thead tr {
+    background: #203958;
+}
+
+thead {
+    background: #2563eb;
+    color: rgb(230, 218, 218);
+    border: 2px solid rgb(209, 255, 118);
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #00000039;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+    background: #f5f8fc;
+}
+
+tbody tr:nth-child(odd) {
+    background: #e5e5ed;
+}
+
+
+
+.sno {
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.case-no {
+    font-weight: 500;
+    color: #1e40af;
+}
+
+.cino {
+    font-family: monospace;
+    font-size: 12px;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 2px 7px;
+    border-radius: 5px;
+}
+
+.party {
+    font-weight: 500;
+    color: #111827;
+}
+
+.adv {
+    color: #374151;
+    font-size: 12px;
+}
+
+.date {
+    color: #64748b;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.court {
+    color: #374151;
+    font-size: 12px;
+}
+
+/* More Info Button */
+.more-info-btn-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+
+.more-info-btn-wrap button {
+    background: #16a34a;
+    color: white;
+}
+
+.more-info-btn-wrap button:hover {
+    background: #15803d;
+}
+
+/* Detail Sections */
+.info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-section {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Header */
+.sec-header {
+    background: #f1f5f9;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Grid */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Field Card */
+.detail-field {
+    background: #fafafa;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+}
+
+.detail-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.detail-value {
+    color: #111827;
+    font-size: 14px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+/* Full Width Field */
+.detail-field--full {
+    grid-column: 1 / -1;
+}
+
+/* Heading */
+h3 {
+    text-align: center;
+    color: #16a34a;
+    margin-bottom: 15px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+
+    .btn-group button {
+        width: 100%;
+    }
+}
+
+.cell-main {
+    color: black;
+}
+
+
+
+.cell-sub {
+    color: #76787b;
+}
+
+.cases-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    letter-spacing: -0.5px;
+}
+
+.header-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn i {
+    font-size: 18px;
+}
+
+.back-btn:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.back-btn:active {
+    transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .cases-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 16px;
+    }
+
+    .header-title h2 {
+        font-size: 1.25rem;
+    }
+
+    .back-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Container to give it some breathing room */
+.back-btn-container {
+    margin: 15px 0;
+    display: flex;
+    justify-content: flex-start;
+    /* Aligns button to the left */
+}
+
+/* The actual button */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    /* Gap between arrow and text */
+    padding: 8px 16px;
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover Effect */
+.btn-back:hover {
+    background-color: #f5f5f5;
+    border-color: #b5b5b5;
+    transform: translateX(-2px);
+    /* Subtle nudge to the left on hover */
+}
+
+/* Active / Click effect */
+.btn-back:active {
+    transform: translateX(0);
+    box-shadow: none;
+}
+
+/* Centered container for the empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    background-color: #f9fafb;
+    /* Light, clean background */
+    border: 1px dashed #e5e7eb;
+    /* Soft dashed border */
+    border-radius: 12px;
+
+    /* Smooth fade-in animation when it appears */
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Styling the icon */
+.empty-state i {
+    font-size: 48px;
+    /* Makes the icon large and visible */
+    color: #9ca3af;
+    /* Soft, muted gray */
+    margin-bottom: 16px;
+    /* Space between icon and text */
+    background-color: #f3f4f6;
+    /* Circular background wrapper effect */
+    padding: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling the text */
+.empty-state p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #4b5563;
+    /* Darker gray for high readability */
+    margin: 0;
+}
+
+/* Keyframes for the entry animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container alignment and spacing */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    /* Space between buttons and text */
+    margin: 24px 0;
+    padding: 10px;
+    font-family: inherit;
+}
+
+/* Pagination buttons styling */
+.pagination button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    color: #374151;
+    /* Dark gray icon color */
+    border: 1px solid #d1d5db;
+    /* Subtle border */
+    border-radius: 50%;
+    /* Perfect circles */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover state for active buttons */
+.pagination button:not([disabled]):hover {
+    background-color: #f3f4f6;
+    /* Soft gray hover */
+    border-color: #9ca3af;
+    color: #111827;
+    /* Darker text/icon on hover */
+}
+
+/* Active press state */
+.pagination button:not([disabled]):active {
+    transform: scale(0.95);
+}
+
+/* Disabled buttons (First page 'Back' / Last page 'Next') */
+.pagination button[disabled] {
+    background-color: #f9fafb;
+    color: #d1d5db;
+    /* Faded arrow icon */
+    border-color: #e5e7eb;
+    cursor: not-allowed;
+    /* Shows block cursor */
+    box-shadow: none;
+}
+
+/* Formatting for the center "Page X of Y" text */
+.pagination span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4b5563;
+    /* Readable slate gray */
+    user-select: none;
+    /* Prevents text highlighting on quick accidental double clicks */
+}
+
+/* Target Tabler Icons specifically if they need centering adjustments */
+.pagination button i {
+    font-size: 18px;
+    line-height: 1;
+}
+
+
+.filters-container {
+    display: flex;
+    flex-direction: row;
+    /* Force structural layout horizontally */
+    align-items: flex-end;
+    /* Aligns fields and the button at the bottom line */
+    gap: 16px;
+    /* Clean spacing between inputs */
+    background-color: #f8fafc;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    /* Optional: Adds a horizontal scrollbar only if the screen gets too tiny, instead of breaking your design */
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    /* Distributes width evenly among inputs */
+}
+
+.filter-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    white-space: nowrap;
+    /* Prevents label text from breaking into two lines */
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    /* Makes input match the flexbox container allocation */
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #1e293b;
+    outline: none;
+    box-sizing: border-box;
+    /* Ensures padding doesn't affect size calculations */
+    transition: border-color 0.2s;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Keeps the Reset button from stretching out unreasonably wide */
+.reset-group {
+    flex: 0 0 auto;
+    /* Don't grow, don't shrink, stay true to button sizing */
+}
+
+.btn-clear {
+    height: 38px;
+    padding: 0 20px;
+    background-color: #e2e8f0;
+    color: #475569;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.btn-clear:hover {
+    background-color: #b3ccd3;
+    color: #1e293b;
+}
+
+/* The table cell container */
+.actions-cell {
+    display: flex;
+    gap: 8px;
+    /* Spacing between buttons */
+    flex-wrap: wrap;
+    /* If there are too many buttons, they wrap neatly instead of breaking the table width */
+    align-items: center;
+    padding: 8px;
+}
+
+/* Base style for all action buttons */
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease-in-out;
+}
+
+/* 🔵 Primary Actions (Allot, Allocate) */
+.btn-primary {
+    background-color: #3b82f6;
+    color: #ffffff;
+
+    &:hover {
+        background-color: #2563eb;
+    }
+}
+
+/* ⚪ Secondary Actions (History) */
+.btn-secondary {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    color: #475569;
+
+    &:hover {
+        background-color: #f8fafc;
+        border-color: #94a3b8;
+        color: #1e293b;
+    }
+}
+
+/* 🟢 Success Actions (Create OIC Request) */
+.btn-success {
+    background-color: #10b981;
+    color: #ffffff;
+
+    &:hover {
+        background-color: #059669;
+    }
+}
+
+/* 🔴 Danger Actions (Delete) */
+.btn-danger {
+    background-color: #ef4444;
+    color: #ffffff;
+
+    &:hover {
+        background-color: #dc2626;
+    }
+}
+
+/* ⚫ Muted/Neutral Actions (OIC Not Required) */
+.btn-muted {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border-color: #e2e8f0;
+
+    &:hover {
+        background-color: #e2e8f0;
+        color: #334155;
+    }
+}
+
+/* Global button press effect */
+.btn-action:active {
+    transform: scale(0.96);
+}

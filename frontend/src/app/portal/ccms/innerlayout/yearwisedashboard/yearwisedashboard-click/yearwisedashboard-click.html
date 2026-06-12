@@ -1,0 +1,122 @@
+<div class="cases-page">
+
+  <div class="back-btn-container">
+    <button class="btn-back" (click)="goBack()">
+      <span class="arrow">←</span> Back
+    </button>
+  </div>
+
+  <div class="filters-container">
+    <div class="filter-group">
+      <label>Case Nature</label>
+      <select [(ngModel)]="filterNature" (change)="applyFilters()">
+        <option value="">All Natures</option>
+        <option *ngFor="let nature of caseNatures" [value]="nature">{{ nature }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Case Number</label>
+      <input type="number" placeholder="e.g. 1234" [(ngModel)]="filterNumber" (input)="applyFilters()">
+    </div>
+
+    <div class="filter-group">
+      <label>Case Year</label>
+      <input type="number" placeholder="e.g. 2026" [(ngModel)]="filterYear" (input)="applyFilters()">
+    </div>
+
+    <div class="filter-group reset-group">
+      <button class="btn-clear" (click)="clearFilters()">Reset</button>
+    </div>
+
+
+  </div>
+
+  <div class="loading-state" *ngIf="loading">
+    <i class="ti ti-loader animate-spin"></i> Loading...
+  </div>
+
+  <div class="table-wrap" *ngIf="!loading">
+    <table class="cases-table" *ngIf="filteredCases.length > 0">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Reg. No / Status</th>
+          <th>
+            <div>Petitioner /</div>
+            <div>Advocate</div>
+          </th>
+          <th>Respondent / Advocate</th>
+          <th>Next Hearing</th>
+          <th>Last Hearing</th>
+          <th>Forwarded to DIR</th>
+          <th>Assign To / Date</th>
+          <th>Reply Filed Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of pagedCases; let i = index">
+          <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+          <td>
+            <div class="cell-main" (click)="openCase(c)" style="cursor: pointer;">{{ c.reg_no
+              }}/{{c.type_name_reg}}/{{c.reg_year}}
+            </div>
+            <div class="cell-sub">
+              <span class="status-pill" [style.background]="accentColor + '22'" [style.color]="accentColor">
+                {{status}}
+              </span>
+            </div>
+          </td>
+          <td>
+            <div class="cell-main">{{ c.pet_name }}</div>
+            <div class="cell-sub">{{ c.pet_adv}}</div>
+          </td>
+          <td>
+            <div class="cell-main">{{ c.res_name }}</div>
+            <div class="cell-sub">{{ c.res_adv }}</div>
+          </td>
+          <td>{{ c.date_next_list ? (c.date_next_list | date:'dd/MM/yyyy') : 'Date Not Issued' }}</td>
+          <td>{{ c.date_last_list ? (c.date_last_list | date:'dd/MM/yyyy') : '—' }}</td>
+          <td>{{ c.forwardedToDir || '—' }}</td>
+          <td>
+            <div class="cell-main">{{ c.assignTo || 'Not Allocated' }}</div>
+            <div class="cell-sub">{{ c.assignedDate || '' }}</div>
+          </td>
+          <td>{{ c.replyFiledDate || '—' }}</td>
+          <td class="actions-cell">
+            <button *ngIf="btn_history" class="btn-action btn-secondary">History</button>
+            <button *ngIf="btn_delete" class="btn-action btn-danger">Delete</button>
+            <button *ngIf="btn_allot" class="btn-action btn-primary">Allot</button>
+            <button *ngIf="btn_allocate" class="btn-action btn-primary">Allocate</button>
+            <button *ngIf="btn_oic_not_required" class="btn-action btn-muted">OIC Not Required</button>
+            <button *ngIf="btn_create_oic_request" class="btn-action btn-success">Create OIC Request</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="empty-state" *ngIf="filteredCases.length === 0">
+      <i class="ti ti-folder-off"></i>
+      <p>No cases match your search criteria.</p>
+    </div>
+
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button class="nav-btn" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+        <i class="ti ti-chevron-left"></i>
+      </button>
+
+      <div class="page-numbers">
+        <button *ngFor="let page of getPageNumbers()" class="num-btn" [class.active]="page === currentPage"
+          (click)="changePage(page)">
+          {{ page }}
+        </button>
+      </div>
+
+      <button class="nav-btn" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+        <i class="ti ti-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+</div>

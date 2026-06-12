@@ -1,0 +1,15 @@
+<header class="topbar">
+  <button class="toggle-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+    <i class="ti ti-menu-2" aria-hidden="true"></i>
+  </button>
+
+  <h1 class="page-title">{{ pageTitle }}</h1>
+
+  <div class="topbar-actions">
+
+    <button class="icon-btn" aria-label="Profile" (click)="logout()">
+      <i class="ti ti-logout"></i>
+      Logout
+    </button>
+  </div>
+</header>

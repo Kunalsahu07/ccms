@@ -1,0 +1,95 @@
+<div class="db">
+
+    <!-- Header -->
+    <div class="db-header">
+
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+        <div class="kpi" [ngClass]="card.colorClass" *ngFor="let card of kpis" (click)="navigateTo(card.route)">
+            <div class="kpi-icon">{{ card.icon }}</div>
+            <div class="kpi-lbl">{{ card.label }}</div>
+            <div class="kpi-val">{{ formatNumber(card.value) }}</div>
+            <div class="kpi-trend">{{ card.subtext }}</div>
+        </div>
+    </div>
+
+    <!-- Detail Panels -->
+    <div class="panels">
+        <!-- Case Types -->
+        <div class="panel">
+            <div class="ph">
+                <span class="ph-dot" style="background:#F0997B"></span>
+                <span class="ph-title">Case types</span>
+            </div>
+            <div class="pr" *ngFor="let row of caseTypes" (click)="navigateTo(row.route)"
+                [style.cursor]="row.route ? 'pointer' : 'default'">
+                <span class="pr-pill" [style.background]="row.color"></span>
+                <span class="pr-name">{{ row.label }}</span>
+                <span class="pr-num">{{ formatNumber(row.value) }}</span>
+            </div>
+        </div>
+
+        <!-- OIC & Forwarding -->
+        <div class="panel">
+            <div class="ph">
+                <span class="ph-dot" style="background:#FAC775"></span>
+                <span class="ph-title">OIC & forwarding</span>
+            </div>
+
+            <div class="bar-section" *ngFor="let row of oicBars" (click)="navigateTo(row.route)"
+                [style.cursor]="row.route ? 'pointer' : 'default'">
+                <div class="bar-top">
+                    <span class="bar-label">{{ row.label }}</span>
+                    <span class="bar-val" [style.color]="row.color">{{ formatNumber(row.value) }}</span>
+                </div>
+                <!-- <div class="bar-o">
+                    <div class="bar-i" [style.width]="barWidth(row.value, row.total)" [style.background]="row.color">
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="stat-row" *ngFor="let row of oicStats" (click)="navigateTo(row.route)"
+                [style.cursor]="row.route ? 'pointer' : 'default'">
+                <span class="stat-label">{{ row.label }}</span>
+                <span class="stat-val" [style.color]="row.color">{{ formatNumber(row.value) }}</span>
+            </div>
+        </div>
+
+        <!-- Reply Status -->
+        <div class="panel">
+            <div class="ph">
+                <span class="ph-dot" style="background:#AFA9EC"></span>
+                <span class="ph-title">Reply status</span>
+            </div>
+
+            <div class="reply-block" *ngFor="let row of replyBars" (click)="navigateTo(row.route)"
+                [style.cursor]="row.route ? 'pointer' : 'default'">
+                <div class="reply-top">
+                    <span class="reply-label">{{ row.label }}</span>
+                    <span class="reply-num" [style.color]="row.color">{{ formatNumber(row.value) }}</span>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Compliance -->
+        <div class="panel">
+            <div class="ph">
+                <span class="ph-dot" style="background:#97C459"></span>
+                <span class="ph-title">Court order compliance</span>
+            </div>
+
+            <div class="stat-row" *ngFor="let row of complianceStats" (click)="navigateTo(row.route)"
+                [style.cursor]="row.route ? 'pointer' : 'default'">
+                <span class="stat-label1">{{ row.label }}</span>
+                <span class="comp-badge" [ngClass]="'badge-' + row.badgeStyle">{{ formatNumber(row.value) }}</span>
+            </div>
+        </div>
+    </div>
+</div>

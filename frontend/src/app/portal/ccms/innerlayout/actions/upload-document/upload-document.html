@@ -1,0 +1,146 @@
+<div class="container">
+    <div class="form-group">
+        <form #caseForm="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="fields-row">
+                <div>
+                    <label for="caseNature">Case Nature</label>
+                    <select id="caseNature" [(ngModel)]="selectedCaseNature" name="caseNatureControl" required
+                        #caseNature="ngModel">
+                        <option [ngValue]="undefined" disabled selected>-- Select --</option>
+                        <option *ngFor="let item of caseType" [value]="item.case_type_code">
+                            {{ item.type_name }} ({{item.case_type_code}})
+                        </option>
+                    </select>
+                    <small *ngIf="caseNature.invalid && caseNature.touched">
+                        Case Nature is required
+                    </small>
+                </div>
+
+                <div>
+                    <label>Case Number</label>
+                    <input type="number" placeholder="Enter Case Number" name="case_number" [(ngModel)]="caseNumber"
+                        required #case_number="ngModel">
+                    <small *ngIf="case_number.invalid && case_number.touched">
+                        Case Number is required
+                    </small>
+                </div>
+
+                <div>
+                    <label>Case Year</label>
+                    <select name="yearControl" [(ngModel)]="selectedYear" required #yearControl="ngModel">
+                        <option [ngValue]="undefined" disabled selected>-- Select --</option>
+                        <option *ngFor="let item of year" [value]="item.year">{{item.year}}</option>
+                    </select>
+                    <small *ngIf="yearControl.invalid && yearControl.touched">
+                        Year is required
+                    </small>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button type="submit" [disabled]="caseForm.invalid">Search</button>
+                <button type="reset" (click)="reset()">Reset</button>
+            </div>
+        </form>
+        <small class="case_already" *ngIf="showContainer">Case Found</small>
+
+    </div>
+
+    <div class="form-group" *ngIf="showContainer">
+        <div class="table-group">
+            <table>
+                <thead>
+                    <tr>
+                        <th>SNO</th>
+                        <th>Case No</th>
+                        <th>CINO</th>
+                        <th>Court Name</th>
+                        <th>Petitioner Name</th>
+                        <th>Respondent Name</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>1.</td>
+                        <td>{{case_type_name}}</td>
+                        <td>{{cino}}</td>
+                        <td>{{courtName}}</td>
+                        <td>{{pet_name}}</td>
+                        <td>{{res_name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <form (ngSubmit)="onUpload()" enctype="multipart/form-data">
+            <div class="fields-row">
+
+                <div>
+                    <label>Document Type</label>
+                    <select name="doc_type" [(ngModel)]="selectedDocType">
+                        <option value="">-- Select --</option>
+                        <option *ngFor="let d of docs" [value]="d.id">{{d.docu_name}}</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Uploaded File</label>
+                    <input type="file" name="doc_upload" (change)="onFileSelected($event)" accept=".pdf,.doc,.docx">
+                </div>
+                <div>
+                    <label>Document No</label>
+                    <input type="number" name="doc_no" placeholder="Enter Document Number" [(ngModel)]="doc_no">
+                </div>
+            </div>
+
+            <div class="fields-row">
+                <div>
+                    <label>Remark</label>
+                    <input type="text" name="remark" placeholder="Enter Remark" [(ngModel)]="remark">
+                </div>
+                <div>
+                    <label>Document Upload Date</label>
+                    <input type="date" name="doc_date" [(ngModel)]="doc_date">
+                </div>
+
+                <button type="submit">Upload</button>
+            </div>
+
+        </form>
+
+        <div class="table-group">
+            <table>
+                <thead>
+                    <tr>
+                        <th>SNO</th>
+                        <th>Document Type</th>
+                        <th>Document Number</th>
+                        <th>Document Upload Date</th>
+                        <th>Remark</th>
+                        <th>File</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of data;let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{d.docu_name}}</td>
+                        <td>{{d.doc_slno}}</td>
+                        <td>{{ d.upload_date | date:'dd-MM-yyyy' }}</td>
+                        <td>{{d.remarks}}</td>
+                        <td>
+                            <a [href]="'http://localhost:5000/documents/' + d.file_nm" target="_blank"
+                                rel="noopener noreferrer" class="file-link">
+                                <button class="btn-open">Open</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <p *ngIf="uploadedPath">
+        Uploaded: <a [href]="uploadedPath" target="_blank">View Document</a>
+    </p>
+</div>
