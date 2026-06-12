@@ -7,8 +7,12 @@ import { Observable } from 'rxjs';
 })
 
 export class CaseService {
-  private apiUrl = 'http://localhost:5000/case/search-case';
-  private baseUrl = 'http://localhost:5000'
+  // private apiUrl = 'http://localhost:5000/case/search-case';
+  // private baseUrl = 'http://localhost:5000'
+  private apiUrl = 'https://ccms-nck9.onrender.com/case/search-case';
+  private baseUrl = 'https://ccms-nck9.onrender.com'
+
+
   constructor(private http: HttpClient) {
 
   }

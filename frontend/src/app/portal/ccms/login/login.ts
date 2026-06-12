@@ -16,12 +16,13 @@ export class Login {
   errors: any = {};
   image_path: any;
 
+  private baseUrl = 'https://ccms-nck9.onrender.com'
   constructor(private http: HttpClient, private router: Router) {
 
   }
   onSubmit() {
     const credentials = { email: this.email, password: this.password };
-    this.http.post<any>('http://localhost:5000/login', credentials).subscribe({
+    this.http.post<any>(`${this.baseUrl}/login`, credentials).subscribe({
       next: (response) => {
         localStorage.setItem('fullname', response.fullname);
         localStorage.setItem('email', response.email);
