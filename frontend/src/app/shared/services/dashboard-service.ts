@@ -8,7 +8,7 @@ import { DeptwiseDocumentClick } from '../../portal/ccms/innerlayout/report/dept
 export class DashboardService {
   // baseUrl = 'http://localhost:5000/dashboard'
 
-  private baseUrl = 'https://ccms-nck9.onrender.com'
+  private baseUrl = 'https://ccms-nck9.onrender.com/dashboard'
   constructor(private http: HttpClient) {
   }
 
