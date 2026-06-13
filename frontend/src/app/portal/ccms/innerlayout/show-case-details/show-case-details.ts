@@ -43,7 +43,15 @@ export class ShowCaseDetails {
   showMoreInfo = true;
   caseDetail: any = null; // assign your full API response here
   activeTab = 0;
+
+  private apiUrl = 'https://ccms-nck9.onrender.com/master'
+  private apiUrl2 = 'https://ccms-nck9.onrender.com/home'
+
+  // private apiUrl = 'http://localhost:5000/master'
+  // private apiUrl2 = 'http://localhost:5000/home'
+
   setTab(i: number) { this.activeTab = i; }
+
   toggleMoreInfo() {
     this.showMoreInfo = !this.showMoreInfo;
   }
@@ -78,7 +86,7 @@ export class ShowCaseDetails {
       }
     });
 
-    this.http.post<any>('http://localhost:5000/home/postCaseDetail', {
+    this.http.post<any>(`${this.apiUrl2}/postCaseDetail`, {
       selectedCaseNature: caseType,
       caseNumber: regNo,
       selectedYear: regYear,
@@ -101,7 +109,7 @@ export class ShowCaseDetails {
           this.cdr.detectChanges();
 
           // Fetch upload details after getting cino
-          this.http.get(`http://localhost:5000/home/upload/${this.cino}`).subscribe({
+          this.http.get(`${this.apiUrl2}/upload/${this.cino}`).subscribe({
             next: (uploadRes: any) => {
               this.data = uploadRes;
               this.cdr.detectChanges();
@@ -125,7 +133,7 @@ export class ShowCaseDetails {
             }
           });
           // Fix the order to match backend: (pet_name, reg_no, reg_year)
-          this.http.post('http://localhost:5000/home/caseAgDetails', {
+          this.http.post(`${this.apiUrl2}/caseAgDetails`, {
             pet_name: this.pet_name,
             reg_no: this.case_number,
             reg_year: this.reg_year

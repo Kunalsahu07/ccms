@@ -484,7 +484,8 @@ export class YearwisedashboardClick implements OnInit {
       '/portal/ccms/adminHome/show_case_details/case-details',
       c.reg_no,
       c.type_name_reg,
-      c.reg_year
+      c.reg_year,
+      c.cino
     ]);
   }
 }
