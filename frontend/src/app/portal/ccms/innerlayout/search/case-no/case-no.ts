@@ -47,9 +47,11 @@ export class CaseNo {
     private http: HttpClient,
     private cdr: ChangeDetectorRef,
   ) { }
-  // private apiUrl = 'https://ccms-nck9.onrender.com/master'
-  private apiUrl = 'http://localhost:5000/master'
-  private apiUrl2 = 'http://localhost:5000/home'
+  private apiUrl = 'https://ccms-nck9.onrender.com/master'
+  private apiUrl2 = 'https://ccms-nck9.onrender.com/home'
+  // private apiUrl = 'http://localhost:5000/master'
+  // private apiUrl2 = 'http://localhost:5000/home'
+
 
   ngOnInit() {
     this.http.get<any>(`${this.apiUrl}/case_nature`).subscribe({

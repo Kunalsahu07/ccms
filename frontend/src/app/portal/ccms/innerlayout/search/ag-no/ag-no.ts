@@ -43,6 +43,11 @@ export class AgNo {
   distDetails: any;
   agNumber: any;
 
+  private apiUrl = 'https://ccms-nck9.onrender.com/master'
+  private apiUrl2 = 'https://ccms-nck9.onrender.com/home'
+  // private apiUrl = 'http://localhost:5000/master'
+  // private apiUrl2 = 'http://localhost:5000/home'
+
   toggleMoreInfo() {
     this.showMoreInfo = !this.showMoreInfo;
   }
@@ -53,18 +58,16 @@ export class AgNo {
 
   ngOnInit() {
 
-    this.http.get<any>('http://localhost:5000/master/doc_type').subscribe({
+    this.http.get<any>(`${this.apiUrl}/doc_type`).subscribe({
       next: (res: any) => { this.docs = res; }
     });
-
   }
-
 
   onSubmit() {
     this.showContainer = false;
     this.cdr.detectChanges();
 
-    this.http.post('http://localhost:5000/home/caseAgDetails1', {
+    this.http.post(`${this.apiUrl2}/caseAgDetails1`, {
       agcino: this.agNumber
     }).subscribe({
       next: (res: any) => {
@@ -105,13 +108,9 @@ export class AgNo {
     });
   }
 
-
-
   reset() {
     this.showContainer = false;
-    this.showMoreInfo = false;  // ← ADD THIS
-    this.caseDetail = null;     // ← ADD THIS
+    this.showMoreInfo = false;
+    this.caseDetail = null;
   }
-
-
 }

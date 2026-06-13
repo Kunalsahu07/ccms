@@ -255,7 +255,7 @@ async function getOicFormalCount(dept_id, reg_year) {
 FROM dept_cases dcs
 LEFT JOIN formal_party fp ON fp.cino = dcs.cino AND fp.dept_id = dcs.dept_id
 LEFT JOIN compliance_not_required cnr ON dcs.cino = cnr.cino AND cnr.dept_id = ?
-LEFT JOIN users uu ON uu.role_type = 'DIR' COLLATE utf8mb4_uca1400_ai_ci 
+LEFT JOIN users uu ON uu.role_type = 'DIR' COLLATE utf8mb4_general_ci 
     AND (uu.id = dcs.user_id OR uu.id = dcs.to_user_id)
 LEFT JOIN (
     SELECT cino, dept_id,

@@ -8,7 +8,6 @@ export class ActionService {
   private baseUrl = 'https://ccms-nck9.onrender.com'
 
   constructor(private http: HttpClient) {
-
   }
 
   getCaseNature() {

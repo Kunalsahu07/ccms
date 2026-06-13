@@ -15,6 +15,13 @@ const pool = mariadb.createPool({
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
     multipleStatements: true,
+    connectTimeout: 20000,
+  
+    ssl: {
+        rejectUnauthorized: true,
+    },
+    charset: 'utf8mb4',
+    collation: 'utf8mb4_general_ci'
 });
 
 module.exports = pool;
