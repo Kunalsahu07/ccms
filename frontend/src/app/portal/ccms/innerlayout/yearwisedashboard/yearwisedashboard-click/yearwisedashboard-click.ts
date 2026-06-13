@@ -441,7 +441,7 @@ export class YearwisedashboardClick implements OnInit {
     }
 
     else {
-      // Safety handling fallback if dynamic parameter fails all route matching rules
+   
       Swal.close();
       this.loading = false;
     }
