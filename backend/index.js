@@ -58,7 +58,7 @@ const dashboardRoute = require('./routes/dashboardRoute');
 const documentRoute = require('./routes/documentRoute');
 
 const { swaggerSpec, swaggerUi } = require('./swagger');
-const redisClient = require('./redis'); // ✅ import Redis
+const redisClient = require('./redis'); 
 
 const app = express();
 const db = require('./db');

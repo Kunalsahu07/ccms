@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DeptwiseDocumentClick } from '../../portal/ccms/innerlayout/report/deptwise-document-click/deptwise-document-click';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class DashboardService {
-  // baseUrl = 'http://localhost:5000/dashboard'
+  // private baseUrl = 'http://localhost:5000/dashboard'
 
   private baseUrl = 'https://ccms-nck9.onrender.com/dashboard'
   constructor(private http: HttpClient) {

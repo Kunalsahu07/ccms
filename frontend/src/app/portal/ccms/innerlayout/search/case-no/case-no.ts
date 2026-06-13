@@ -47,18 +47,21 @@ export class CaseNo {
     private http: HttpClient,
     private cdr: ChangeDetectorRef,
   ) { }
+  // private apiUrl = 'https://ccms-nck9.onrender.com/master'
+  private apiUrl = 'http://localhost:5000/master'
+  private apiUrl2 = 'http://localhost:5000/home'
 
   ngOnInit() {
-    this.http.get<any>('http://localhost:5000/master/case_nature').subscribe({
+    this.http.get<any>(`${this.apiUrl}/case_nature`).subscribe({
       next: (res) => { this.caseType = res; },
       error: (err) => console.error(err)
     });
 
-    this.http.get<any>('http://localhost:5000/master/year').subscribe({
+    this.http.get<any>(`${this.apiUrl}/year`).subscribe({
       next: (res) => { this.year = res.reverse(); }
     });
 
-    this.http.get<any>('http://localhost:5000/master/doc_type').subscribe({
+    this.http.get<any>(`${this.apiUrl}/doc_type`).subscribe({
       next: (res: any) => { this.docs = res; }
     });
   }
@@ -78,7 +81,7 @@ export class CaseNo {
       }
     });
 
-    this.http.post<any>('http://localhost:5000/home/postCaseDetail', {
+    this.http.post<any>(`${this.apiUrl2}/postCaseDetail`, {
       selectedCaseNature: this.selectedCaseNature,
       caseNumber: this.caseNumber,
       selectedYear: this.selectedYear
@@ -100,7 +103,7 @@ export class CaseNo {
           this.cdr.detectChanges();
 
           // Fetch upload details after getting cino
-          this.http.get(`http://localhost:5000/home/upload/${this.cino}`).subscribe({
+          this.http.get(`${this.apiUrl2}/upload/${this.cino}`).subscribe({
             next: (uploadRes: any) => {
               this.data = uploadRes;
               this.cdr.detectChanges();
@@ -124,7 +127,7 @@ export class CaseNo {
             }
           });
           // Fix the order to match backend: (pet_name, reg_no, reg_year)
-          this.http.post('http://localhost:5000/home/caseAgDetails', {
+          this.http.post(`${this.apiUrl2}/caseAgDetails`, {
             pet_name: this.pet_name,
             reg_no: this.case_number,
             reg_year: this.reg_year
@@ -165,9 +168,6 @@ export class CaseNo {
         });
       }
     });
-
-
-
   }
 
   reset() {
