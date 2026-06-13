@@ -38,18 +38,23 @@ export class UploadDocument {
     private cdr: ChangeDetectorRef,
     private docService: Documentservice
   ) { }
+  // private apiUrl = 'http://localhost:5000/master'
+  // private apiUrl2 = 'http://localhost:5000/home'
+
+  private apiUrl = 'https://ccms-nck9.onrender.com/master'
+  private apiUrl2 = 'https://ccms-nck9.onrender.com/home'
 
   ngOnInit() {
-    this.http.get<any>('http://localhost:5000/master/case_nature').subscribe({
+    this.http.get<any>(`${this.apiUrl}/case_nature`).subscribe({
       next: (res) => { this.caseType = res; },
       error: (err) => console.error(err)
     });
 
-    this.http.get<any>('http://localhost:5000/master/year').subscribe({
+    this.http.get<any>(`${this.apiUrl}/year`).subscribe({
       next: (res) => { this.year = res.reverse(); }
     });
 
-    this.http.get<any>('http://localhost:5000/master/doc_type').subscribe({
+    this.http.get<any>(`${this.apiUrl}/doc_type`).subscribe({
       next: (res: any) => { this.docs = res; }
     });
   }
@@ -69,7 +74,7 @@ export class UploadDocument {
       }
     });
 
-    this.http.post<any>('http://localhost:5000/home/postCaseDetail', {
+    this.http.post<any>(`${this.apiUrl2}/postCaseDetail`, {
       selectedCaseNature: this.selectedCaseNature,
       caseNumber: this.caseNumber,
       selectedYear: this.selectedYear
@@ -86,7 +91,7 @@ export class UploadDocument {
           this.cdr.detectChanges();
 
           // Fetch upload details after getting cino
-          this.http.get(`http://localhost:5000/home/upload/${this.cino}`).subscribe({
+          this.http.get(`${this.apiUrl2}/upload/${this.cino}`).subscribe({
             next: (uploadRes: any) => {
               this.data = uploadRes;
               this.cdr.detectChanges();
