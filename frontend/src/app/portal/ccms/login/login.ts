@@ -16,8 +16,8 @@ export class Login {
   errors: any = {};
   image_path: any;
 
-  // private baseUrl = 'https://ccms-nck9.onrender.com'
-  private baseUrl = 'http://localhost:5000'
+  private baseUrl = 'https://ccms-nck9.onrender.com'
+  // private baseUrl = 'http://localhost:5000'
 
   constructor(private http: HttpClient, private router: Router) {
 
