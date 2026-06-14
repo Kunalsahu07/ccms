@@ -1,6 +1,11 @@
-// ─── Wrapper ──────────────────────────────────────────────
+// ─── Wrapper ─────────────────────────────────────────────-
 
-
+.db {
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
 // ─── Header ───────────────────────────────────────────────
 .db-header {
     display: flex;
@@ -36,9 +41,16 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
 
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 560px) {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -141,6 +153,10 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
 
     @media (max-width: 900px) {
         grid-template-columns: repeat(2, 1fr);
@@ -376,62 +392,6 @@
 .year-select-wrapper {
     position: relative;
     display: inline-block;
-    justify-content: flex-end;
-    min-width: 160px;
-    margin-left: auto;
-
-    label {
-        display: block;
-        font-size: 13px;
-        font-weight: 500;
-        color: #6b7280;
-        margin-bottom: 6px;
-    }
-
-    select {
-        appearance: none;
-        -webkit-appearance: none;
-        width: 100%;
-        padding: 8px 36px 8px 12px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #111827;
-        background: #ffffff;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        cursor: pointer;
-        outline: none;
-        transition: border-color 0.15s, box-shadow 0.15s;
-
-        &:hover {
-            border-color: #9ca3af;
-        }
-
-        &:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-        }
-    }
-
-    .chevron-icon {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 16px;
-        color: #6b7280;
-        pointer-events: none;
-    }
-}
-
-.db {
-    display: flex;
-    flex-direction: column;
-}
-
-.year-select-wrapper {
-    position: relative;
-    display: inline-block;
     min-width: 160px;
     align-self: flex-end; // ← pushes it to the right end
     margin-bottom: 12px;
@@ -478,4 +438,31 @@
         color: #6b7280;
         pointer-events: none;
     }
+
+    @media (max-width: 560px) {
+        min-width: 100%;
+        align-self: stretch;
+        margin-bottom: 8px;
+    }
+}
+
+// ─── Small screen typography tweaks ───────────────────────
+@media (max-width: 560px) {
+    .db-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .kpi-lbl { font-size: 13px; }
+    .kpi-val { font-size: 20px; }
+    .kpi-icon { font-size: 16px; }
+
+    .ph-title, .bar-label, .pr-name, .stat-label, .reply-label { font-size: 13px; }
+    .pr-num, .stat-val, .reply-num { font-size: 14px; }
+}
+
+@media (max-width: 360px) {
+    .db { padding: 10px; }
+    .kpi-val { font-size: 18px; }
 }

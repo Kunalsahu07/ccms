@@ -20,17 +20,86 @@
 form {
     display: flex;
     flex-direction: column;
-    gap: rem;
+    gap: 1rem;
 }
 
-/* First row — all 3 fields side by side */
+/* First row — fields, buttons, and detail fields */
 .fields-row {
     display: grid;
-    grid-template-columns: 1.5fr 1.5fr 1.5fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     align-items: end;
+}
 
+.fields-row>div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 75px;
+}
 
+.btn1,
+.btn2 {
+    display: flex;
+    align-items: center;
+}
+
+.btn1 button,
+.btn2 button {
+    width: 100%;
+}
+
+/* Responsive behavior */
+@media (max-width: 900px) {
+    .fields-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .form-group {
+        padding: 1.25rem;
+    }
+
+    .fields-row {
+        grid-template-columns: 1fr;
+    }
+
+    .btn1,
+    .btn2 {
+        width: 100%;
+    }
+
+    button[type="submit"],
+    button[type="reset"],
+    .addCaseInDept {
+        width: 100%;
+    }
+
+    .addCaseInDept {
+        margin-left: 0;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    select {
+        font-size: 13px;
+        height: 42px;
+    }
+}
+
+@media (max-width: 400px) {
+    .form-group {
+        padding: 1rem;
+    }
+
+    .case_already {
+        font-size: 18px;
+    }
 }
 
 /* Each field wrapper */

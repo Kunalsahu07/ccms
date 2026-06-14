@@ -77,6 +77,7 @@ export class AddNewCase {
               if (res.length > 0) {
                 this.showText = 'Case Already Added'
                 this.showbutton = false;
+                this.cdr.detectChanges();
               } else {
                 this.showText = 'Case Found'
                 this.showbutton = true;

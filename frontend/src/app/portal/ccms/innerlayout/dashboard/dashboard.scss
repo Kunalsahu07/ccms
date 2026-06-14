@@ -1,5 +1,12 @@
 // ─── Wrapper ──────────────────────────────────────────────
 
+.db {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 
 // ─── Header ───────────────────────────────────────────────
 .db-header {
@@ -36,9 +43,16 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -141,6 +155,10 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   @media (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);
@@ -371,4 +389,26 @@
   background: #0c1222;
   color: #85B7EB;
   border: 0.5px solid #1a2d55;
+}
+
+// ─── Small screen typography tweaks ───────────────────────
+@media (max-width: 560px) {
+  .db-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .kpi-lbl { font-size: 13px; }
+  .kpi-val { font-size: 20px; }
+  .kpi-icon { font-size: 16px; }
+
+  .ph-title, .bar-label, .pr-name, .stat-label, .reply-label { font-size: 13px; }
+  .pr-num, .stat-val, .reply-num { font-size: 14px; }
+}
+
+@media (max-width: 360px) {
+  .db { padding: 10px; }
+  .kpi-val { font-size: 18px; }
+  .kpi-lbl { font-size: 12px; }
 }
