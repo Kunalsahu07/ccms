@@ -15,7 +15,7 @@ const buildCacheKey = (req) => {
     return key;
 };
 
-const cacheMiddleware = (ttl = 300) => {
+const cacheMiddleware = (ttl = 3000) => {
     return async (req, res, next) => {
         const cacheKey = buildCacheKey(req);
 

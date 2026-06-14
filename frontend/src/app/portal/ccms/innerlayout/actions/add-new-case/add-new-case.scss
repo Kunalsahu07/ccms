@@ -74,10 +74,8 @@ form {
     button[type="reset"],
     .addCaseInDept {
         width: 100%;
-    }
-
-    .addCaseInDept {
         margin-left: 0;
+        margin-right: 0;
     }
 
     label {
@@ -248,9 +246,9 @@ small {
     color: #ffffff;
     border: none;
     border-radius: 8px;
-    padding: 10px 5px;
+    padding: 10px 20px;
     margin-top: 20px;
-    margin-left: 60px;
+    margin-left: auto;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
