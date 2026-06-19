@@ -1,18 +1,18 @@
 const axios = require('axios');
 const crypto = require('crypto');
 
-const BASE_URL = 'https://delhigw.napix.gov.in/nic/ecourts/';
-const TOKEN_URL = 'https://delhigw.napix.gov.in/nic/ecourts//oauth2/token';
+const BASE_URL = '';
+const TOKEN_URL = '';
 
 // ─── Config (from your Web.config AppSettings) ───────────────
-NAPIX_API_KEY = "c340e71880d8925bb442a6958c7dfbd7";
-NAPIX_SECRET_KEY = "ca4d08fed641b24c0c62675d5c8b8823";
-NAPIX_IV_STRING = "rl6uixNNGvoDMe5q";
-NAPIX_DEPT_ID = "cg-forest";
-NAPIX_VERSION = "v1.0";
-NAPIX_SECRET_KEY_HMAC = "15081947";   // secretKey (for HMAC)
-NAPIX_AUTH_KEY = "rl6uixNNGvoDMe5q";           // authenticationKey (for AES)
-NAPIX_EST_CODE = "CGHC01";
+NAPIX_API_KEY = "";
+NAPIX_SECRET_KEY = "";
+NAPIX_IV_STRING = "";
+NAPIX_DEPT_ID = "";
+NAPIX_VERSION = "";
+NAPIX_SECRET_KEY_HMAC = "";   // secretKey (for HMAC)
+NAPIX_AUTH_KEY = "";           // authenticationKey (for AES)
+NAPIX_EST_CODE = "";
 
 
 function hashHmac(reqString) {
